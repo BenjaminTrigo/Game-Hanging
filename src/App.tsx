@@ -51,11 +51,9 @@ const hiddenWordArray = hiddenWord.split(' ');
   for ( let i = 0; i < word.length; i++ ) {
     if ( word[i] === letter ) {
       hiddenWordArray[i] = letter;
-    
     }
-
-  setHiddenWord( hiddenWordArray.join(' ') );
   }
+  setHiddenWord( hiddenWordArray.join(' ') );
  }
 
  // Reiniciar juego

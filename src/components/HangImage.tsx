@@ -29,11 +29,12 @@ interface Props {
 
 export  function HangImage( {imageNumber}: Props ) {
   
-    if (imageNumber >=9) {
-        imageNumber = 9; 
+    // Ensure imageNumber is within bounds [0, 9]
+    if (imageNumber < 0) {
+        imageNumber = 0;
+    } else if (imageNumber > 9) {
+        imageNumber = 9;
     }
-
-  //if (imageNumber < 0 || imageNumber >= images.length) {
 
     return (
         <img src={ images [imageNumber] } 
