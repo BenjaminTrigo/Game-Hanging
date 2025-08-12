@@ -1,69 +1,39 @@
-# React + TypeScript + Vite
+# Game-Hanging
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es un juego de ahorcado desarrollado con **Vite** y **TypeScript**.
 
-Currently, two official plugins are available:
+## Procedimientos realizados
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Inicialización del proyecto con Vite y TypeScript:**
+  ```bash
+  npm create vite@latest
+  # Selecciona TypeScript + React
+  npm install
+  ```
 
-## Expanding the ESLint configuration
+2. **Estructuración de la carpeta `src`:**
+  - Se crearon los archivos principales para la lógica y la interfaz del juego.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+3. **Desarrollo de componentes React y lógica del juego:**
+  - Implementación de la lógica del ahorcado y componentes visuales.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Estructura y explicación de los archivos en `src`
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- **assets**
+  Carpeta para las imágenes de 0-9 indicando graficamente el inicio y el final del juego .
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **components/**  
+  Carpeta con componentes reutilizables, por ejemplo:
+  - **HangImage.tsx**: Dibuja el ahorcado con las images de la carpetas assets.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **main.tsx**  
+  Punto de entrada de la aplicación. Renderiza el componente principal en el DOM.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **App.tsx**  
+  Componente raíz. Contiene la estructura principal del juego y gestiona el estado global.
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **styles/**  
+  Archivos CSS o módulos de estilos para personalizar la apariencia.
+
+## Cómo ejecutar el proyecto
+  Comando en la terminal:   "npm run dev "

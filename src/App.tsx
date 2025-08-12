@@ -1,5 +1,5 @@
 import  {letters} from './helpers/letters'
-import './App.css'
+import './styles/App.css'
 import { HangImage } from './components/HangImage'
 import { useEffect, useState } from 'react'
 import { getRandomWord } from './helpers/getRandomWord';
@@ -12,6 +12,7 @@ const [ hiddenWord, setHiddenWord ]  = useState('- ' .repeat( word.length ) );
 const [ attempts, setAttempts ] =  useState(0)
 const[ lose, setLose ] = useState( false );
 const [ won, setWon ] = useState( false );
+const [ usedLetters, setUsedLetters ] = useState<string[]>([]);
 
 // Determinar si la persona perdió
 useEffect( ()  => {
@@ -23,7 +24,9 @@ useEffect( ()  => {
 // Determinar si la persona ganó
 useEffect( () => {
   // Elimina los espacios para comparar correctamente
-  const currentHiddenWord = hiddenWord.replace(/\s/g, '');
+  const currentHiddenWord = hiddenWord.split(' ').join('');
+
+// Veificador si la palabra oculta coincide con la palabra escrita
   if ( currentHiddenWord === word ) {
     setWon( true );
   }
@@ -34,12 +37,15 @@ if ( lose ) return;
 if ( won ) return;
 
   // Verificar si la letra ya fue seleccionada
-  if ( hiddenWord.includes(letter) ) {
-    return;
+if ( hiddenWord.includes(letter) ) {
+    return ;
   }
+  if ( usedLetters.includes(letter) ) {
+    return ;
+  }
+  setUsedLetters([...usedLetters, letter]);
 
   // Verificar si la letra está en la palabra
-  
 if ( !word.includes(letter) ) {
    setAttempts( Math.min (attempts +1, 9) );  
   return;
@@ -65,6 +71,7 @@ const newWord = getRandomWord();
   setAttempts(0);
   setLose(false);
   setWon(false);
+  setUsedLetters([]);
 }
 
   return (
@@ -87,7 +94,7 @@ const newWord = getRandomWord();
         
         {/* Mensaje si ganó */}
         {( won ) 
-        ? <h2>Felicidades; usted ganó!! </h2>
+        ? <h2>Felicidades, usted ganó!! </h2>
         : ' '
         }
 
@@ -96,8 +103,10 @@ const newWord = getRandomWord();
           letters.map( (letter) => (
             <button 
             onClick={ () => checkLetter(letter) }
-            key={ letter }>
-                 {letter}
+            key={ letter }
+            disabled={ usedLetters.includes(letter) }
+            >
+                {letter}
             </button>
           ))
         }
