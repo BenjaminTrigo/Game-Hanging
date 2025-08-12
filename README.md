@@ -37,3 +37,6 @@ Este proyecto es un juego de ahorcado desarrollado con **Vite** y **TypeScript**
 
 ## Cómo ejecutar el proyecto
   Comando en la terminal:   "npm run dev "
+
+## Para mirar el Proyecto terminado 
+  [text](https://juegodelahorcado6.netlify.app/)
